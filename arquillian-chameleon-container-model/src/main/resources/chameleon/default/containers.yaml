@@ -485,7 +485,7 @@
       configuration: *TOMCAT_MANAGED_CONFIG
   defaultType: managed
   dist: *TOMCAT_DIST
-  
+
 - name: TomEE
   versionExpression: 1.*
   adapters:
@@ -500,9 +500,9 @@
       coordinates: org.apache.openejb:arquillian-tomee-embedded:${version}
       adapterClass: org.apache.openejb.arquillian.embedded.EmbeddedTomEEContainer
       requireDist: false
-  dist:  
-    coordinates: org.apache.openejb:apache-tomee:zip:${version}     
-      
+  dist:
+    coordinates: org.apache.openejb:apache-tomee:zip:${version}
+
 - name: TomEE
   versionExpression: [7.*|8.*]
   adapters:
@@ -516,6 +516,22 @@
     - type: embedded
       coordinates: org.apache.tomee:arquillian-tomee-embedded:${version}
       adapterClass: org.apache.openejb.arquillian.embedded.EmbeddedTomEEContainer
-      requireDist: false   
-  dist:  
+      requireDist: false
+  dist:
     coordinates: org.apache.tomee:apache-tomee:zip:${version}
+
+- name: Liberty
+  versionExpression: [17.*|18.*|19.*|20.*|21.*|22.*]
+  adapters:
+    - type: remote
+      coordinates: io.openliberty.arquillian:arquillian-liberty-remote:1.0.6
+      adapterClass: io.openliberty.arquillian.remote.WLPRemoteContainer
+    - type: managed
+      coordinates: io.openliberty.arquillian:arquillian-liberty-managed:1.0.6
+      adapterClass: io.openliberty.arquillian.managed.WLPManagedContainer
+      requireDist: true
+      configuration: &LIBERTY_CONFIG
+        wlpHome: ${dist}
+        addLocalConnector: true
+  dist:
+    coordinates: io.openliberty:openliberty-javaee8:zip:${version}
