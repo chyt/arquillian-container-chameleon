@@ -524,14 +524,16 @@
   versionExpression: [17.*|18.*|19.*|20.*|21.*|22.*]
   adapters:
     - type: remote
-      coordinates: io.openliberty.arquillian:arquillian-liberty-remote:1.0.6
+      coordinates: io.openliberty.arquillian:arquillian-liberty-remote:1.0.7-SNAPSHOT
       adapterClass: io.openliberty.arquillian.remote.WLPRemoteContainer
     - type: managed
-      coordinates: io.openliberty.arquillian:arquillian-liberty-managed:1.0.6
+      coordinates: io.openliberty.arquillian:arquillian-liberty-managed:1.0.7-SNAPSHOT
       adapterClass: io.openliberty.arquillian.managed.WLPManagedContainer
       requireDist: true
       configuration: &LIBERTY_CONFIG
         wlpHome: ${dist}
         addLocalConnector: true
+        serverStartTimeout: 60
+        standardFileDeleteRetryInterval: 1000
   dist:
     coordinates: io.openliberty:openliberty-javaee8:zip:${version}
